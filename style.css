@@ -1,0 +1,10 @@
+.generate-grid { display: block; margin: 40px auto auto; color: #2273ff; background-color: #a1c4ff; padding: 10px 30px; border-radius: 50px; position: relative; transition: .2s ease-in; }
+.generate-grid:hover { color: #ffffff; background-color: #2273ff; }
+.generate-grid::before { content: ""; width: 0; height: 2px; background-color: #2273ff; position: absolute; left: 0; right: 0; margin: auto; bottom: 0; transition: .2s ease-out .15s; }
+.generate-grid:hover::before { width: 77.5%; }
+
+.grid-container { width: calc(3em * 9); margin: 100px auto auto; display: flex; flex-wrap: wrap;}
+.grid-child { width: 9em; }
+input[type="number"] { padding-left: 12px; width: 3em; height: 3em; border: 1px solid #000; text-align: center; }
+
+.grid-square[grid-square=0] { background-color: #eee; }
