@@ -28,7 +28,11 @@ const solveSquares = () => {
     for ( i = 0; i < val['cube'][m].length; i++ ) {
       b = '.grid-square' + '[data-grid=' + 'square' + i + ']';
       squareVal = document.querySelector( a + ' > ' + b ).value;
-      val['cube'][m][i] = squareVal;
+      if ( val['cube'][m][i] === null ) {
+        val['cube'][m][i] = '';
+      }else {
+        val['cube'][m][i] = squareVal;
+      }
     }
   }
   k = 0,
@@ -42,7 +46,11 @@ const solveSquares = () => {
       a = '#gridChild' + k;
       b = '.grid-square' + '[data-grid=' + 'square' + l + ']';
       squareVal = document.querySelector( a + ' > ' + b ).value;
-      val['row'][m][i] = squareVal;
+      if ( val['row'][m][i] === null ) {
+        val['row'][m][i] = '';
+      } else {
+        val['row'][m][i] = squareVal;
+      }
       l++;
       if ( l % 3  === 0 ) {
         l -= 3;
@@ -75,7 +83,11 @@ const solveSquares = () => {
       a = '#gridChild' + k;
       b = '.grid-square' + '[data-grid=' + 'square' + l + ']';
       squareVal = document.querySelector( a + ' > ' + b ).value;
-      val['col'][m][i] = squareVal;
+      if ( val['col'][m][i] === null ) {
+        val['col'][m][i] = '';
+      } else {
+        val['col'][m][i] = squareVal;
+      }
       if (i === 8 ) {
         k -= ( k - o );
       }

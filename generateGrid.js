@@ -20,7 +20,7 @@ element = document.createElement(elementTag);
 document.getElementById('Wrap').insertBefore(element, document.getElementById('Wrap').firstChild);
 element.id = 'generateGrid';
 element.classList = 'generate-grid';
-element.textContent = 'generateGrid';
+element.textContent = 'がんばれがんばれ';
 
 const generateGrid = (grid=9) => {
   elementTag = 'form';
@@ -36,10 +36,11 @@ const generateGrid = (grid=9) => {
       generateSquare('input', 'gridChild' + i, 'gridSquare' + o, 'grid-square');
       element.type = 'number';
       element.dataset['grid'] = 'square' + k;
-      element.value = o;
+      // element.value = o;
       o++;
     }
   }
 }
 generateGrid();
 // document.getElementById('generateGrid').setAttribute('onclick', 'generateGrid()');
+document.getElementById('generateGrid').setAttribute('onclick', 'solve()');
