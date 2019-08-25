@@ -1,46 +1,76 @@
-// 1.グリッドを生成する
-let element, elementTag, parentID, elementID, elementClass;
-const generateSquare = (elementTag, parentID, elementID, elementClass) => {
-  element = document.createElement(elementTag);
-  parent = document.getElementById(parentID);
-  parent.appendChild(element);
-  element.id = elementID;
-  element.classList = elementClass;
-}
-
-elementTag = 'div';
-element = document.createElement(elementTag);
-document.getElementById('body').insertBefore(element, document.getElementById('body').firstChild);
-element.id = 'Wrap';
-element.classList = 'wrap';
-
-
-elementTag = 'button';
-element = document.createElement(elementTag);
-document.getElementById('Wrap').insertBefore(element, document.getElementById('Wrap').firstChild);
-element.id = 'generateGrid';
-element.classList = 'generate-grid';
-element.textContent = 'がんばれがんばれ';
-
-const generateGrid = (grid=9) => {
-  elementTag = 'form';
-  element = document.createElement(elementTag);
-  document.getElementById('Wrap').appendChild(element);
-  element.id = 'gridContainer';
-  element.classList = 'grid-container';
-
-  o = 0;
-  for (let i = 0; i < grid; i++) {
-    generateSquare('div', 'gridContainer', 'gridChild' + i, 'grid-child');
-    for (let k = 0; k < grid; k++) {
-      generateSquare('input', 'gridChild' + i, 'gridSquare' + o, 'grid-square');
-      element.type = 'number';
-      element.dataset['grid'] = 'square' + k;
-      // element.value = o;
-      o++;
+// *** Function for generating elements. ***
+const generateElement = (
+  elementTag,
+  parentID,
+  elementPosition,
+  elementID,
+  elementClass,
+  elementText,
+  elementType,
+  elementData,
+  elementDataValue
+  ) => {
+    element = document.createElement(elementTag);
+    parent = document.getElementById(parentID);
+    switch(elementPosition){
+      case 'insertBefore':
+        parent.insertBefore(element, parent.firstChild);
+        break
+      case 'appendChild':
+        document.getElementById(parentID).appendChild(element);
+        break
+      default:
+        document.getElementById(parentID).appendChild(element);
     }
+    if (elementID) element.id = elementID;
+    if (elementClass) element.classList = elementClass;
+    if (elementText) element.textContent = elementText;
+    if (elementType) element.type = elementType;
+    if (elementData && elementDataValue) element.dataset[elementData] = elementDataValue;
+  }
+// *** *** *** *** *** *** *** *** *** *** ***
+
+// run the function for generating wrapper.
+generateElement('div', 'body', 'insertBefore', 'Wrap', 'wrap');
+
+// run the function for generating button for the solving question.
+generateElement('button', 'Wrap', 'appendChild', 'solveBtn', 'solve-btn', 'SOLVE');
+
+// run the function for generating container for grid.
+generateElement('form', 'Wrap', 'appendChild', 'gridContainer', 'grid-container');
+
+// *** Function for generating array for generating grid. ***
+const generateGridBase = (gridPieces = 9) => {
+  gridBase = [];
+  for (let i = 0; i < gridPieces; i++) {
+    gridBase.push(i);
   }
 }
-generateGrid();
-// document.getElementById('generateGrid').setAttribute('onclick', 'generateGrid()');
-document.getElementById('generateGrid').setAttribute('onclick', 'solve()');
+// *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
+
+// run the function for generating array for generating grid.
+generateGridBase();
+
+// *** Function for generating grid. ***
+const gridFleshing = () => {
+  gridBase.forEach(childCount => {
+    generateElement('div', 'gridContainer', 'appendChild', 'gridChild' + childCount, 'grid-child');
+    gridBase.forEach(grandchildCount => {
+      generateElement(
+        'input',
+        'gridChild' + childCount,
+        'appendChild',
+        'gridGrandchild' + grandchildCount,
+        'grid-grandchild',
+        undefined,
+        'number',
+        'grid',
+        'square' + grandchildCount
+        );
+    });
+  });
+}
+// *** *** *** *** *** *** *** *** *** ***
+
+// run the function for generating grid.
+gridFleshing();
