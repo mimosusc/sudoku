@@ -60,7 +60,7 @@ const gridFleshing = () => {
         'input',
         'gridChild' + childCount,
         'appendChild',
-        'gridGrandchild' + grandchildCount,
+        undefined,
         'grid-grandchild',
         undefined,
         'number',
