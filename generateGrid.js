@@ -1,5 +1,7 @@
-// *** Function for generating elements. ***
-const generateElement = (
+let gridPieces = 9;
+
+// *** Function for set elements. ***
+const setElement = (
   elementTag,
   parentID,
   elementPosition,
@@ -30,17 +32,8 @@ const generateElement = (
   }
 // *** *** *** *** *** *** *** *** *** *** ***
 
-// run the function for generating wrapper.
-generateElement('div', 'body', 'insertBefore', 'Wrap', 'wrap');
-
-// run the function for generating button for the solving question.
-generateElement('button', 'Wrap', 'appendChild', 'solveBtn', 'solve-btn', 'SOLVE');
-
-// run the function for generating container for grid.
-generateElement('form', 'Wrap', 'appendChild', 'gridContainer', 'grid-container');
-
-// *** Function for generating array for generating grid. ***
-const generateGridBase = (gridPieces = 9) => {
+// *** Function for set array for set grid. ***
+const setGridBase = () => {
   gridBase = [];
   for (let i = 0; i < gridPieces; i++) {
     gridBase.push(i);
@@ -48,29 +41,23 @@ const generateGridBase = (gridPieces = 9) => {
 }
 // *** *** *** *** *** *** *** *** *** *** *** *** *** *** ***
 
-// run the function for generating array for generating grid.
-generateGridBase();
-
-// *** Function for generating grid. ***
+// *** Function for set grid. ***
 const gridFleshing = () => {
-  gridBase.forEach(childCount => {
-    generateElement('div', 'gridContainer', 'appendChild', 'gridChild' + childCount, 'grid-child');
-    gridBase.forEach(grandchildCount => {
-      generateElement(
+  gridBase.forEach(currentChild => {
+    setElement('div', 'gridContainer', 'appendChild', `gridChild${currentChild}`, 'grid-child');
+    gridBase.forEach(currentGrandchild => {
+      setElement(
         'input',
-        'gridChild' + childCount,
+        `gridChild${currentChild}`,
         'appendChild',
         undefined,
         'grid-grandchild',
         undefined,
         'number',
         'grid',
-        'square' + grandchildCount
+        `square${currentGrandchild}`
         );
     });
   });
 }
 // *** *** *** *** *** *** *** *** *** ***
-
-// run the function for generating grid.
-gridFleshing();

@@ -1,3 +1,4 @@
+// *** Function for get values in cell. ***
 // --*-- variables. --*-- 
 let val = {},
     lawBaseNum,
@@ -10,44 +11,37 @@ let val = {},
 const gridSquareRoot = Math.sqrt(gridPieces);
 // --*-- --*-- --*-- --*-- 
 const getVal = () => {
-    // --*-- arrays for comparison. --*-- 
-    val = {
-      'gridChild': [], 'row': [], 'column': []
-    }
-    // --*-- --*-- --*-- --*-- --*-- --*-- 
+  // --*-- arrays for comparison. --*-- 
+  val = {
+    'gridChild': [], 'row': [], 'column': []
+  }
+  // --*-- --*-- --*-- --*-- --*-- --*-- 
   Object.keys(val).forEach(key =>{
     gridBase.forEach(currentChild => {
-      val[key][currentChild] = [];
       lawBaseNum = currentChild % gridSquareRoot;
-      switch (key) {
-        case 'gridChild':
-          break;
-        case 'row':
-          if(currentChild % gridSquareRoot === 0) initialChild = currentChild;
-          initialGrandchild = (lawBaseNum !== 0 ? lawBaseNum * gridSquareRoot : 0);
-          break;
-        case 'column':
-          if(currentChild % gridSquareRoot === 0 ) initialChild = currentChild / gridSquareRoot;
-          initialGrandchild = lawBaseNum;
-          break;
-      }
       val[key][currentChild] = [];
       gridBase.forEach(currentGrandchild => {
         val[key][currentChild][currentGrandchild] = [];
+        initialChild = 0, addChild = 0, initialGrandchild = 0, addGrandchild = 0;
         switch (key) {
           case 'gridChild':
             focusChild = currentChild;
             focusGrandchild = currentGrandchild;
             break;
           case 'row':
-            if(currentGrandchild % gridSquareRoot === 0) addChild = currentGrandchild / gridSquareRoot;
+            initialChild = Math.floor(currentGrandchild / gridSquareRoot);
+            addChild = Math.floor(currentChild / gridSquareRoot) * gridSquareRoot;
+            initialGrandchild = (currentChild % gridSquareRoot) * gridSquareRoot;
+            addGrandchild = currentGrandchild % gridSquareRoot;
             focusChild = initialChild + addChild;
-            focusGrandchild = initialGrandchild + (currentGrandchild % gridSquareRoot);
+            focusGrandchild = initialGrandchild + addGrandchild;
             break;
           case 'column':
-            if(currentGrandchild % gridSquareRoot === 0) addChild = currentGrandchild;
+            initialChild = Math.floor(currentChild / gridSquareRoot);
+            addChild = Math.floor(currentGrandchild / gridSquareRoot) * gridSquareRoot;
+            initialGrandchild = currentChild % gridSquareRoot;
+            addGrandchild = Math.floor(currentGrandchild % gridSquareRoot) * gridSquareRoot;
             focusChild = (addChild !== undefined ? initialChild + addChild : initialChild);
-            addGrandchild = (currentGrandchild % gridSquareRoot) * gridSquareRoot;
             focusGrandchild = initialGrandchild + addGrandchild;
             break;
         }
@@ -57,5 +51,4 @@ const getVal = () => {
     });
   });
 }
-// run the function for get values;
-getVal();
+// *** *** *** *** *** *** *** *** *** *** *** 

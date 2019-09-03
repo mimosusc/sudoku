@@ -5,7 +5,7 @@
 .solve-btn:active { background-color: #4ade45; }
 .solve-btn:active::before { background-color: transparent; }
 
-.grid-container { width: calc(3em * 9); margin: 40px auto auto; display: flex; flex-wrap: wrap;}
+.grid-container { width: calc(3em * 9); margin: 40px auto 30px; display: flex; flex-wrap: wrap;}
 .grid-child { width: 9em; }
 input[type="number"] { padding-left: 12px; width: 3em; height: 3em; border: 1px solid #000; text-align: center; }
 
