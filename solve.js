@@ -46,6 +46,7 @@ const solve = () => {
             focusCell.value = settingDestination;
           });
         }
+        console.log(candidate);
       }
     });
   });
@@ -79,6 +80,6 @@ const solvePack = () => {
   getVal();
   valChacking();
   solve();
-  if (needSolve) solvePack();
+  // if (needSolve) solvePack();
 }
 //   *   ☆   *   ☆   *   ☆   *   ☆   *   
