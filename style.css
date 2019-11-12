@@ -9,13 +9,13 @@
 .solve-btn:active { background-color: #4ade45; }
 .solve-btn:active::before { background-color: transparent; }
 
-.grid-container { width: calc(3em * 9); margin: 40px auto 30px; display: flex; flex-wrap: wrap;}
-.grid-child { width: 9em; }
-input[type="number"] { padding-left: 12px; width: 3em; height: 3em; border: 1px solid #000; text-align: center; }
+.grid-container { width: calc(3em * 9); font-size: 16px; margin: 40px auto 30px; display: flex; flex-wrap: wrap; }
+.grid-container.is4 { width: calc(5em * 16); font-size: 10px; }
 
-.grid-grandchild[grid-square=0] { background-color: #eee; }
+.grid { padding-left: 12px; width: 3em; height: 3em; border: 1px solid #000; text-align: center; }
+.grid.is4 { width: 5em; height: 5em; }
 
 @media screen and (max-width:320px) {
   .grid-container { font-size: 3.5vw;}
-  input[type="number"] { padding-left: 0; }
+  .grid { padding-left: 0; }
 }
